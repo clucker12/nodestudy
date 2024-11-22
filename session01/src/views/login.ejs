@@ -1,0 +1,14 @@
+
+session : <%= username %> <br>
+<% if(!username) {%>
+    <form method="post" action="/session/login_check">
+        <input type="text" name="id"> <br>
+        <input type="text" name="pwd"> <br>
+        <input type="submit" value="로그인">
+    </form>
+    <%}else{ %>
+        <b> <%= username %></b>님 환영합니다!!! <br>
+        <a href="/session/logout">로그아웃</a>
+        <a href="/session/main">main</a>
+
+<%}%>

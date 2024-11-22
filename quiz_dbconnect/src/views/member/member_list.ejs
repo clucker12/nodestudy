@@ -1,0 +1,19 @@
+<%- include("../default/header") %>
+
+    <table border="1px">
+        <tr>
+            <th>아이디</th>
+            <th>비밀번호</th>
+            <th>이름</th>
+            <th>주소</th>
+        </tr>
+        <% result.forEach( item => { %>
+        <tr>
+
+            <td><%= item.ID %></td>
+            <td><%= item.PWD %></td>
+            <td><a href="/member/member_view/<%= item.ID %>"><%= item.NAME %></a></td>
+            <td><%= item.ADDR %></td>
+        </tr>
+        <% }) %>
+    </table>

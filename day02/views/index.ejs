@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>index</h1>
+    <%= mem[0] %> <br>
+    <%= mem[0].id %> <br>
+    <%= mem[1].name %> <br>
+    <hr>
+    [
+    {id : "aaa", name : "a홍길동", addr : "a산골짜기"},
+    {id : "bbb", name : "b홍길동", addr : "b산골짜기"},
+    {id : "ccc", name : "c홍길동", addr : "c산골짜기"},
+]
+    <% mem.forEach(data => { %>
+        id : <%= data.id %><br>
+        name : <a href="/info?id=<%=data.id%>"> <%= data.name %> </a><br>
+        addr : <%= data.addr %><hr>
+
+    <% } ) %>
+    <hr>
+    <% for(i=0; i< mem.length; i++) {%>
+        id : <%= mem[i].id %><br>
+    <%}%>
+</body>
+</html>

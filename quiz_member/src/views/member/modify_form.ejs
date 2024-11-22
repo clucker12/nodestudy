@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("../default/header.ejs") %>
+    수정페이지
+    <hr>
+    <form action="/member/modify" method="post">
+        <input type="text" name="id" readonly
+                                         value="<%= member.ID %>"><BR>
+        <input type="text" name="pwd" value="<%= member.PWD %>"><BR>
+        <input type="text" name="name" value="<%= member.NAME %>"><BR>
+        <input type="text" name="addr" value="<%= member.ADDR %>"><BR>
+        <input type="submit" value="변경">
+    </form>
+</body>
+</html>

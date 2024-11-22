@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("../default/header.ejs") %>
+    개인정보<br>
+    id :  <%= member.ID %><br>
+    pwd : <%= member.PWD %><br>
+    name : <%= member.NAME %><br>
+    addr : <%= member.ADDR %><br>
+    <% if( username == member.ID ){   %>
+        <a href="/member/modify_form?id=<%= member.ID %>">수정</a>
+        <a href="/member/del">삭제</a>
+    <% } %>
+    <a href="/">목록이동</a>
+</body>
+</html>

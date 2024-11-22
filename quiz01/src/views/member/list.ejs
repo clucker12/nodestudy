@@ -1,0 +1,17 @@
+<table border="1">
+    <tr>
+        <th>아이디</th> <th>이 름</th> <th>주 소</th>
+    </tr>
+    <% for(let i=0 ; i < list.length ; i++){%>
+        <tr>
+        <td> <%= list[i]["id"] %> </td>
+        <td> 
+            <a href="/member/info?id=<%= list[i]['id'] %>">
+                <%= list[i]["name"] %> 
+            </a>
+        </td>
+        <td> <%= list[i]["addr"] %> </td>
+        </tr>
+    <%}%>
+</table>
+ 

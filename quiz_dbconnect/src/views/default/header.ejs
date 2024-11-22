@@ -1,0 +1,10 @@
+<a href="/">HOME</a>
+<% if(!username) {%>
+    <a href="/member/login_form">로그인</a>
+    <a href="/member/login_form">회원정보</a>
+<%}else{ %>
+    <a href="/member/logout">로그아웃</a>
+    <a href="/member/member_list">회원정보</a>
+<%}%>
+
+<hr>

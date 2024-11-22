@@ -1,0 +1,13 @@
+<ul>
+    <li>상품목록</li>
+    <% list.forEach( item => { %>
+        <li>
+            <a href="/cookie/save/<%= item.goods_id%>">
+                <%= item.title %>
+            </a>
+            : <%= item.price %> 원
+        </li>
+    <% }) %>
+</ul>
+
+<a href="/cookie/view_list">선택 상품 확인</a>
