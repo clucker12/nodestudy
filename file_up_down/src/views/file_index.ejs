@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/image_read.js"></script>
+</head>
+<body>
+    <form action="/file/upload" method="post" enctype="multipart/form-data">
+        <input type="text" name="title" > <br>
+        <img id="preview" src="#" width="100" height="100" alt="이미지없음" > <br>
+        <input type="file" name="file_name" onchange="readURL(this)"> <br>
+        <input type="submit" value="전송">
+    </form>
+    <a href="/file/list">데이터 확인</a>
+</body>
+</html>

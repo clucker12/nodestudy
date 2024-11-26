@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const readURL = (file) => {
+            const f = file.files[0];
+            console.log(f)
+            if(f != ""){
+                let reader = new FileReader();
+                reader.readAsDataURL(f)
+                reader.onload = (e) => {
+                    document.querySelector("#preview").src = e.target.result
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="/file/modify" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="originFileName" value="<%= fileName %>">
+        <img src="/file/download/<%= fileName %>" width="100" height="100" id="preview"> <br>
+        <input type="file" name="newFileName" onchange="readURL(this)"><br>
+        <input type="submit" value="수정">
+    </form>
+</body>
+</html>
