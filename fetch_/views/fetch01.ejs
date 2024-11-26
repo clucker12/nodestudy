@@ -1,0 +1,33 @@
+<script>
+    function test(){
+        fetch("/fetch01")
+    }
+    async function getCount(){
+        // const res = await fetch("/get_count")
+        // console.log("res : ", res);
+        // const result = await res.json();
+        // console.log("result : ", result);
+        // console.log("result.cnt : ", result.cnt);
+        // document.getElementById("count").innerHTML = result.cnt
+        // fetch("/get_count").then(res => {
+        //     console.log("res : ",res)
+        //     // console.log("json : ",res.json())
+        //     return res.json()
+        // })
+        // .then(result => {
+        //     console.log("result : ", result)
+        //     document.getElementById("count").innerHTML = result.cnt
+        // })
+        fetch("/get_count")
+        .then(res => res.json())
+        .then(result => {
+            console.log("result : ", result)
+            document.getElementById("count").innerHTML = result.cnt
+        })
+        
+    }
+</script>
+<h1>11</h1><h1>11</h1><h1>11</h1><h1>11</h1><h1>11</h1><h1>11</h1><h1>11</h1><h1>11</h1><h1>11</h1><h1>11</h1><h1>11</h1>
+<button onclick="test()">클릭</button><hr>
+<button onclick="getCount()">getCount</button>
+<span id="count">0</span>

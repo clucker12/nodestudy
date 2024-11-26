@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        let list = [
+            {id : "aaa", pwd : "aaa", name : "홍길동a", addr : "산골짜기a"},
+            {id : "bbb", pwd : "bbb", name : "홍길동b", addr : "산골짜기b"},
+            {id : "ccc", pwd : "ccc", name : "홍길동c", addr : "산골짜기c"}
+        ];
+        let content;
+        window.onload = () => {
+            content = document.getElementById("content");
+            const getMembers = document.getElementById("getMembers")
+            getMembers.addEventListener("click",getMember)
+
+            const reg_View = document.getElementById("regView")
+            reg_View.addEventListener("click",regView)
+        }
+        const register = () => {
+            const arr = $("#form").serializeArray();
+            console.log(arr)
+            let data = {};
+            arr.forEach(d => {
+                data[d.name] = d.value;
+            })
+            // console.log(data)
+            list = list.concat(data)
+
+            console.log(typeof data)
+            console.log(typeof JSON.stringify(data))
+
+            fetch("/members", {
+                method : "post",
+                headers : {"Content-Type" : "application/json"},
+                body : JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(result => {
+                console.log("result : ",result)
+                if(result == 1){
+                    alert("가입 축하");
+                    getMember();
+                }else{
+                    alert("문제발생")
+                }
+            })
+        }
+        const regView = () =>{
+            let msg =` <form id="form">
+                            <input type="text" name="id" placeholder="id"><br>
+                            <input type="text" name="pwd" placeholder="pwd"><br>
+                            <input type="text" name="name" placeholder="name"><br>
+                            <input type="text" name="addr" placeholder="addr"><br>
+                            <input type="button" onclick="register()" value="가입"><br>
+                        </form>`;
+            content.innerHTML = msg;
+
+        } 
+        const getMember = async() => {
+            const res = await fetch("/members",{method:"get"});
+            const list = await res.json();
+            
+            
+            let msg = `<table border="1">
+                        <tr>
+                            <th>아이디</th><th>이름</th><th>주소</th>
+                        </tr>`;
+            list.forEach(member => {
+                msg += "<tr>";
+                msg += `<td>${member.id}</td>`;
+                msg += `<td onclick="info('${member.id}')" style="cursor:pointer">${member.name}</td>`;
+                msg += `<td>${member.addr}</td>`;
+                msg += "</tr>";
+            })
+            msg += "</table>";
+            content.innerHTML = msg;
+        }
+        const info = async(uId) => {
+            console.log("uId : ", uId)
+            const res = await fetch("/members/"+uId, {method : "get"})
+            const result = await res.json();
+            let msg = `id : ${result.id}<br>
+                        pwd : ${result.pwd}<br>
+                        name : ${result.name}<br>
+                        addr : ${result.addr}<hr>
+                        <span onclick="getMember()" style="cursor:pointer">목록</span>
+                        <button onclick="mod_form('${result.id}')">수정</button>
+                        <button onclick="del('${result.id}')">삭제</button>`;
+            content.innerHTML = msg;
+        }
+        const del = (id) => {
+            fetch("/members/"+id, {method : "delete"})
+            alert("삭제 성공")
+            getMember();
+        }
+        const mod_form = async (id) => {
+            console.log("id : ", id)
+            const res = await fetch("/members/"+id, {method : "get"})
+            const result = await res.json();
+
+            let msg =` <form id="form">
+                            <input type="text" name="id" value="${result.id}" placeholder="id"><br>
+                            <input type="text" name="pwd" value="${result.pwd}"placeholder="pwd"><br>
+                            <input type="text" name="name" value="${result.name}"placeholder="name"><br>
+                            <input type="text" name="addr" value="${result.addr}"placeholder="addr"><br>
+                            <input type="button" onclick="modify()" value="수정"><br>
+                        </form>`;
+            content.innerHTML = msg;
+        }
+        const modify = () => {
+            const arr = $("#form").serializeArray();
+            let data = {};
+            arr.forEach(d => {
+                data[d.name] = d.value;
+            })
+            fetch("/members", {
+                method : "put",
+                headers : {"Content-Type" : "application/json"},
+                body : JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(result => {
+                if(result == 1){
+                    alert("수정 성공");
+                    info(data.id);
+                }else{
+                    alert("문제발생")
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+
+    <div id="content"></div><hr>
+    <button type="button" id="getMembers">목록 보기</button>
+    <button type="button" id="regView">회원 가입</button>
+    <button type="button" id="modView">수정</button>
+</body>
+</html>

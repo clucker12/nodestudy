@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const viewMember = () => {
+            fetch("/quiz_members", {method : "get"})
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                let msg ="";
+                data.forEach(m => {
+                    msg += m.id + "," + m.name +"<br>"
+                });
+                const content = document.getElementById("content");
+                content.insertAdjacentHTML("beforeend",msg)
+            })
+        }
+    </script>
+</head>
+<body>
+    <div id="content"></div>
+    <hr>
+    <button onclick="viewMember()">더 보기</button>
+</body>
+</html>
