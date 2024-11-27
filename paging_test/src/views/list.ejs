@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>글 번호</th>
+            <th>제목</th>
+            <th>등록날짜</th>
+            <th>조회수</th>
+        </tr>
+        <% list.forEach(data => { %>
+            <tr>
+                <td><%=data.NUM%></td>
+                <td>
+                    <a href="/page/content/<%= data.NUM %>">
+                        <%=data.TITLE%>
+                    </a>
+                </td>
+                <td><%=data.PDATE%></td>
+                <td><%=data.COUNT%></td>
+            </tr>
+        <%})%>
+        <% if(list.length == 0) {%>
+            <tr>
+                <td colspan="4" align="center">
+                    <b> 등록된 정보 없음</b>
+                </td>
+            </tr>
+        <%}%>
+
+        <tr>
+            <td colspan="4" >
+                <% if(start >1){ %>
+                    <button onclick="location.href = '/page/list?start=<%=start -1 %>'">이전</button>
+                <% } %>
+               
+                <% for(let i = 1; i<= page; i++) { %>
+                    <a href="/page/list?start=<%= i %>">
+                        <%= i %>
+                    </a>
+                    
+                <%}%>
+                <% if(start == undefined || start < page){%>
+                    <button onclick="location.href = '/page/list?start=<%= start + 1 %>'">다음</button>
+                <%}%>
+                
+                <a href="/page/write_form">글 등록</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
