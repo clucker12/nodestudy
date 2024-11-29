@@ -1,0 +1,60 @@
+*{ margin: 0; padding: 0; }
+#header {
+    width: 700px;
+    height: 100px;
+    background-color: brown;
+    display: flex;
+    margin: 0 auto;
+}
+#title_logo{
+    background-color: bisque;
+    width: 100px;
+    background-image: url("/static/images/탱담.jpg");
+    background-size: 100px 100px;
+    border-radius: 100px;
+}
+#nav {
+    background-color: brown;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+}
+#nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+#nav ul li { margin: 0 10px; }
+#nav ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    &:hover{
+        color: orange;
+        border-bottom: 2px solid orange;
+        padding-bottom: 5px;
+        transition: 0.25s;
+    }
+}
+#nav ul:nth-child(2) a {
+    font-size: 13px; color: lightgray;
+}
+#header_wrap { 
+    width: 100%; 
+    background-color: brown;
+    position: fixed;
+    top : 0;
+}
+#title_logo > div {
+    color: white;
+    margin-top: 25px;
+    animation: title 0.8s infinite;
+}
+@keyframes title{
+    25%{ color: orchid;}
+    50%{ color: yellow;}
+    75%{ color: hotpink;}
+}
+#main {
+    width: 700px; margin: 150px auto;
+}

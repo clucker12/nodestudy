@@ -10,7 +10,7 @@ const login = async (req) => {
     if(result != undefined){
         if(req.body.id == result.ID){
             if(req.body.pwd == result.PWD){
-                req.session.userid = result.PWD;
+                req.session.userid = result.ID;
                 req.session.name = result.NAME;
                 msg = result.NAME+"님 환영합니다"
                 url = "/"
@@ -77,18 +77,7 @@ const modify = async ( body ) => {
     return getMessage(msg, url);
 }
 
-const deleteM = async (body) => {
-    console.log("deleteM =>",body)
-    const result = await dao.deleteM(body.id);
-
-    let msg="", url="";
-    if( result != 0 ){//삭제
-        msg = "삭제되었음!!!";
-        url ="/member/member_list";
-    }else{ // 실패
-        msg = "문제 발생!!!!";
-        url ="/member/member_view/"+body.id;
-    }
-    return getMessage(msg, url);
+const deleteM = async (id) => {
+    dao.deleteM(id);
 }
 module.exports = {deleteM,modify,getMember,logout,register,getList,login}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>번호</th>
+            <th>id</th>
+            <th>제목</th>
+            <th>날짜</th>
+            <th>조회수</th>
+            <th>원본 이미지이름</th>
+            <th>변경 이미지이름</th>
+        </tr>
+        <% if( list.length == 0){ %>
+            <tr>
+                <th colspan="7">등록된 글이 없습니다</th>
+            </tr>
+        <%}else{
+            list.forEach(data => { %>
+            <tr>
+                <td><%=data.WRITE_NO%></td>
+                <td>
+                    <%=data.ID%>
+                </td>
+                <td>
+                    <a href="/board/content/<%= data.WRITE_NO %>">
+                        <%=data.TITLE%>
+                    </a>
+                </td>
+                <td><%=data.SAVE_DATE%></td>
+                <td><%=data.HIT%></td>
+                <td><%=data.ORIGIN_FILE_NAME%></td>
+                <td><%=data.CHANGE_FILE_NAME%></td>
+            </tr>
+            <%})
+        }%>
+        <tr>
+            <td colspan="7">
+                <a href="/board/write_form">글 작성</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

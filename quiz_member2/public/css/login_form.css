@@ -1,0 +1,72 @@
+#login_wrap {
+    display: none;
+    position: absolute;
+    top : 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+#login {
+    display: none;
+    position: absolute; 
+    top : 200px; left: calc(50% - 180px);
+    width: 360px;
+    height: 250px;
+    box-shadow: 0 0 8px black;
+    border-radius: 10px;
+    background-color: white;
+}
+#login > .title {
+    text-align: center;
+    letter-spacing: 5px;
+    font-size: 25px;
+    border-bottom: 3px dotted olive;
+
+    width: 220px;
+    margin: auto;
+    padding: 10px 0;
+    color: darkcyan;
+}
+#login > form {
+    width: 270px;
+    margin: 0 auto;
+}
+#login > form > input{
+    color: gray;
+    font-size: 20px;
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid lightgray;
+    letter-spacing: 3px;
+    width: 100%;
+    &:focus{
+        border-bottom: 2px solid gray;
+    }
+}
+#login > form > button {
+    margin-top: 20px;
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: lightgrey;
+    &:hover{
+        background-color: gray;
+    }
+}
+#cancle {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 30px;
+    background-color: lightgray;
+    margin-left: 330px;
+    cursor: pointer;
+    &:hover {
+        background-color: gray;
+    }
+}

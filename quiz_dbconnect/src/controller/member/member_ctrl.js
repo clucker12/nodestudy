@@ -7,7 +7,7 @@ oracledb.outFormat = oracledb.OBJECT;
 const ser = require("../../service/member/member_service")
 
 const loginForm = (req,res) => {
-    res.render("member/login_form",{ username : req.session.name });
+    res.render("member/login_form",{ username : req.session.name, userid : req.session.userid });
 }
 
 const login = async (req,res) => {
@@ -60,8 +60,8 @@ const modify = async(req, res)=>{
     res.send( msg );
 }
 const deleteM = async (req, res)=>{
-    console.log( req.params );
-    let msg = await ser.deleteM( req.params );
-    res.send( msg );
+    console.log("req.session.userid : ",req.session.userid)
+    ser.deleteM( req.session.userid )
+    res.redirect("/member/logout")
 }
 module.exports = {deleteM,modify,modifyForm,memberView,logout,register,regForm,memberList,loginForm,login}

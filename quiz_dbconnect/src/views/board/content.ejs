@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/image_read.js"></script>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th colspan="8">개인정보</th>
+        </tr>
+        <tr>
+            <th>글번호</th>
+            <td colspan="3"><%= data.WRITE_NO %></td>
+            <th>작성자</th>
+            <td colspan="3"><%= data.ID %></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td colspan="3"><%= data.TITLE %></td>
+            <th>등록일자</th>
+            <td colspan="3"><%= data.SAVE_DATE %></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td colspan="3"><%= data.CONTENT %></td>
+            <th colspan="2">
+                <% if(data.ORIGIN_FILE_NAME) {%>
+
+                    <img id="preview" src="/board/download/<%=data.CHANGE_FILE_NAME%>" width="300" height="300" alt="이미지없음">
+                <%}else{ %>
+                    <b>이미지가 없습니다</b>
+                <%}%>
+                
+            </th>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <% if(userid) {%>
+                    <a href="/board/list">수정하기</a>
+                    <a href="/board/delete?no=<%= data.WRITE_NO %>&filename=<%=data.CHANGE_FILE_NAME%>">삭제하기</a>
+                <%} %>
+                <a href="/board/list">답글달기</a>
+                <a href="/board/list">리스트로 돌아가기</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

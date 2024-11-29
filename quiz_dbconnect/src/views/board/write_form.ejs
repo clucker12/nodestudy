@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/image_read.js"></script>
+</head>
+<body>
+    <h1>글쓰기</h1>
+    <form action="/board/write" method="post" enctype="multipart/form-data">
+        <b>작성자</b><br>
+        <input type="text" name="id" value="<%= userid %>" readonly><hr>
+        <b>제목</b> <br>
+        <input type="text" name="title"><hr>
+        <b>내용</b> <br>
+        <textarea name="content" ></textarea><hr>
+        <b>이미지 파일 첨부</b> <br>
+        <input type="file" name="file_name" onchange="readURL(this)"> 
+        <img id="preview" src="#" width="300" height="300" alt="이미지없음" >
+        <hr>
+        <input type="submit" value="등록">
+        <input type="button"value="목록보기" onclick="location.href='/board/list'">
+    </form>
+</body>
+</html>
