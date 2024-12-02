@@ -1,0 +1,71 @@
+
+
+<link href="/static/css/header.css" rel="stylesheet">
+<link href="/static/css/login_form.css" rel="stylesheet">
+
+<div id="header_wrap">
+    <header id="header">
+        <h1 id="title_logo">
+            <div>탱이냥</div>
+        </h1>
+        <nav id="nav">
+            <ul id="menu">
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">MEMBER_SHIP</a></li>
+                <li><a href="#">BOARD_LIST</a></li>
+            </ul>
+            <ul id="auth">
+                <li><a href="#">LOGIN</a></li>
+                <li><a href="#">REGISTER</a></li>
+            </ul>
+        </nav>
+    </header>
+</div>
+
+<div id="login_wrap">
+<div id="login">
+    <div id="cancle">x</div>
+    <h2 class="title" onclick="location.href='/'" style="cursor: pointer;">
+        탱이냥 로그인
+    </h2>
+    <div class="title_hover">HOME 이동</div>
+    <form>
+        <input type="text"
+            placeholder="input username"><br>
+        <input type="password"
+            placeholder="input password"><br>
+        <button>LOGIN</button>
+    </form>
+</div>
+</div>
+
+
+<script>
+        const cancle = document.getElementById("cancle")
+        cancle.addEventListener("click",xCalcle)
+    //console.log( document.cookie )
+   // window.onload = () => {
+        let msg = `<li><a href="/">HOME</a></li>`
+        msg += `<li><a href="/member/list">회원정보</a></li>`;
+        msg += `<li><a href="/board/list">게시판</a></li>`;
+        document.getElementById("menu").innerHTML = msg;
+        let auth = "";
+        if(document.cookie.indexOf("isLogin=true") != -1){
+            auth += `<li><a href="/member/logout">LOGOUT</a></li>`;
+        }else{
+            auth += `<li><a href="/member/login_form">LOGIN</a></li>`;
+        }
+        auth += `<li><a href="/member/register_form">REGISTER</a></li>`;
+        auth += `<li><a onclick="loginForm()"
+            style='cursor:pointer;'>LOGIN_modal</a></li>`;
+        document.getElementById("auth").innerHTML = auth;
+    //}
+    function loginForm(){
+        document.getElementById("login_wrap").style.display="block"
+        document.getElementById("login").style.display="block"
+    }
+    function xCalcle(){
+        document.getElementById("login_wrap").style.display="none"
+        document.getElementById("login").style.display="none"
+    }
+</script>

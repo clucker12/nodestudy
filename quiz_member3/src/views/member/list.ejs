@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("../default/header.ejs") %>
+<div id="main">
+    목록 연동
+    <%= list %>
+    <table border="1">
+        <tr><th>아이디</th> <th>비번</th> <th>이름</th> <th>주소</th></tr>
+    <% for(let i=0 ; i < list.length ; i++){ %>
+        <tr>
+            <td><%= list[i].ID %></td>
+            <td>* * * * *</td>
+            <td><%= list[i].NAME %></td>
+            <td><%= list[i].ADDR %></td>
+        </tr>
+    <% } %>
+
+    <% list.forEach( data => { %>
+        <tr>
+            <td><%= data.ID %></td>
+            <td>* * * * *</td>
+            <td>
+                <a href="/member/info/<%= data.ID %>">
+                    <%= data.NAME %>
+                </a>
+            </td>
+            <td><%= data.ADDR %></td>
+        </tr>
+    <% }) %>
+
+    </table>
+</div>
+</body>
+</html>
